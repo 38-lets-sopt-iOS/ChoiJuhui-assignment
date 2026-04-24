@@ -39,7 +39,7 @@ class PasswordViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.autocorrectionType = .no
         textField.clearButtonMode = .whileEditing
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
         textField.leftViewMode = .always
         textField.backgroundColor = .gray600
         textField.layer.cornerRadius = 16
@@ -52,7 +52,7 @@ class PasswordViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "eye-off"), for: .normal)
         button.tintColor = .gray300
-        button.frame = CGRect(x: 0, y: 0, width: 40, height: 20)
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
         return button
     }()
     
@@ -142,8 +142,11 @@ class PasswordViewController: UIViewController {
     }
     
     private func setAction() {
-        passwordTextField.rightView = eyeButton
+        let rightContainer = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 24))
+        rightContainer.addSubview(eyeButton)
+        passwordTextField.rightView = rightContainer
         passwordTextField.rightViewMode = .always
+        
         passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         eyeButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         nicknameButton.addTarget(self, action: #selector(didTapNicknameButton), for: .touchUpInside)

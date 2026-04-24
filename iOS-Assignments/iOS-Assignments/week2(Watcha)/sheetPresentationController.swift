@@ -13,14 +13,18 @@ final class NicknameBottomSheetViewController: UIViewController {
     var onNicknameConfirmed: ((String) -> Void)?
     
     private let nicknameTextField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "닉네임을 입력해주세요"
-        tf.backgroundColor = .gray600
-        tf.layer.cornerRadius = 12
-        tf.textColor = .white
-
-        
-        return tf
+        let textField = UITextField()
+        textField.placeholder = "닉네임"
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
+        textField.leftViewMode = .always
+        textField.backgroundColor = .gray600
+        textField.layer.cornerRadius = 12
+        textField.font = UIFont(name: "Pretendard-Regular", size: 12)
+        textField.textColor = .white
+        textField.autocapitalizationType = .none
+        textField.autocorrectionType = .no
+        textField.clearButtonMode = .whileEditing
+        return textField
     }()
     
     private let saveButton: UIButton = {
@@ -47,7 +51,7 @@ final class NicknameBottomSheetViewController: UIViewController {
         nicknameTextField.snp.makeConstraints {
             $0.top.equalToSuperview().offset(40)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(50)
+            $0.height.equalTo(47)
         }
         saveButton.snp.makeConstraints {
             $0.top.equalTo(nicknameTextField.snp.bottom).offset(20)
