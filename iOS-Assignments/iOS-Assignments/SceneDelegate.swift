@@ -15,13 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let tabBarController = TabBarController()
-                
+        let loginViewController = LoginViewController()  // 또는 첫 화면
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+        
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = tabBarController
+        window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
