@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class WelcomeViewController: UIViewController {
@@ -54,21 +55,21 @@ class WelcomeViewController: UIViewController {
     
     private func setLayout() {
         logoImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(240)
+            $0.top.equalToSuperview().inset(240)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(180)
-            $0.height.equalTo(60)
+            $0.width.equalTo(319)
+            $0.height.equalTo(167)
         }
         
         welcomeLabel.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(40)
+            $0.top.equalToSuperview().inset(306)
             $0.centerX.equalToSuperview()
         }
         
         mainButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(709)
-            $0.leading.equalToSuperview().offset(22)
+            $0.top.equalToSuperview().inset(709)
+            $0.leading.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
     }

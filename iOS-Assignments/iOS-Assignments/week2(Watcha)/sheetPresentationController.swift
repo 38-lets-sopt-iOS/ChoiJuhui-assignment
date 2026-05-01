@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 final class NicknameBottomSheetViewController: UIViewController {
@@ -18,7 +19,7 @@ final class NicknameBottomSheetViewController: UIViewController {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 0))
         textField.leftViewMode = .always
         textField.backgroundColor = .gray600
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 16
         textField.font = UIFont(name: "Pretendard-Regular", size: 12)
         textField.textColor = .white
         textField.autocapitalizationType = .none
@@ -28,11 +29,11 @@ final class NicknameBottomSheetViewController: UIViewController {
     }()
     
     private let saveButton: UIButton = {
-        let b = UIButton()
-        b.setTitle("저장하기", for: .normal)
-        b.backgroundColor = .systemPink
-        b.layer.cornerRadius = 12
-        return b
+        let button = UIButton()
+        button.setTitle("저장하기", for: .normal)
+        button.backgroundColor = .systemPink
+        button.layer.cornerRadius = 16
+        return button
     }()
     
     override func viewDidLoad() {
@@ -49,7 +50,7 @@ final class NicknameBottomSheetViewController: UIViewController {
     
     private func setLayout() {
         nicknameTextField.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(40)
+            $0.top.equalToSuperview().inset(40)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(47)
         }

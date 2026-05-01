@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class PasswordViewController: UIViewController {
@@ -25,7 +26,7 @@ class PasswordViewController: UIViewController {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .grayplus
+        label.textColor = .gray50
         label.font = UIFont(name: "Pretendard-Medium", size: 12)
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -107,36 +108,36 @@ class PasswordViewController: UIViewController {
     
     private func setLayout() {
         titlelabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(152)
-            $0.leading.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().inset(152)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         emailLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(219)
-            $0.leading.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().inset(219)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         passwordTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(277)
-            $0.leading.equalToSuperview().offset(31)
+            $0.top.equalToSuperview().inset(277)
+            $0.leading.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
         
         validationLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(337)
+            $0.top.equalToSuperview().inset(337)
             $0.leading.equalTo(passwordTextField).offset(4)
         }
         
         nicknameButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(391)
+            $0.top.equalToSuperview().inset(391)
             $0.centerX.equalToSuperview()
         }
         
         signUpButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(709)
-            $0.leading.equalToSuperview().offset(22)
+            $0.top.equalToSuperview().inset(709)
+            $0.leading.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
     }
@@ -164,7 +165,7 @@ class PasswordViewController: UIViewController {
     private func updateSignUpButton() {
         let hasText = !(passwordTextField.text?.isEmpty ?? true)
         signUpButton.isEnabled = hasText
-        signUpButton.backgroundColor = hasText ? .systemPink : .gray400
+        signUpButton.backgroundColor = hasText ? .pink : .gray400
         signUpButton.setTitleColor(hasText ? .white : .gray200, for: .normal)
     }
     
@@ -175,19 +176,19 @@ class PasswordViewController: UIViewController {
     }
     
     @objc private func didTapNicknameButton() {
-        let sheetVC = NicknameBottomSheetViewController()
-        sheetVC.onNicknameConfirmed = { [weak self] nickname in
+        let sheetViewController = NicknameBottomSheetViewController()
+        sheetViewController.onNicknameConfirmed = { [weak self] nickname in
             self?.nickname = nickname
             self?.updateNicknameButton(nickname: nickname)
         }
-        sheetVC.modalPresentationStyle = .pageSheet
-        if let sheet = sheetVC.sheetPresentationController {
+        sheetViewController.modalPresentationStyle = .pageSheet
+        if let sheet = sheetViewController.sheetPresentationController {
             sheet.detents = [.custom { context in
                 return context.maximumDetentValue * 0.5
             }]
             sheet.prefersGrabberVisible = true
         }
-        present(sheetVC, animated: true)
+        present(sheetViewController, animated: true)
     }
     
     private func updateNicknameButton(nickname: String) {
@@ -202,9 +203,9 @@ class PasswordViewController: UIViewController {
     }
     
     @objc private func didTapSignUpButton() {
-        let welcomeVC = WelcomeViewController()
-        welcomeVC.email = email
-        welcomeVC.nickname = nickname
-        navigationController?.pushViewController(welcomeVC, animated: true)
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.email = email
+        welcomeViewController.nickname = nickname
+        navigationController?.pushViewController(welcomeViewController, animated: true)
     }
 }

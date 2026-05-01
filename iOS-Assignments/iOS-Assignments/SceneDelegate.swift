@@ -16,18 +16,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let loginViewController = LoginViewController()
-//        let AutoLayoutViewController = Autolayout_Practice()
-//        let ScrollViewController = ScrollViewPractice2()
         let navigationController = UINavigationController(rootViewController:loginViewController)
-        guard let windowScene = (scene as? UIWindowScene) else { return }
             
         let window = UIWindow(windowScene: windowScene)
-        let loginVC = LoginViewController()
-        
-        let navController = UINavigationController(rootViewController: loginVC)
-        navController.isNavigationBarHidden = true
+        navigationController.isNavigationBarHidden = true
             
-        window.rootViewController = navController
+        window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 class LoginViewController: UIViewController {
@@ -23,7 +24,7 @@ class LoginViewController: UIViewController {
     private let textlabel1: UILabel = {
         let label = UILabel()
         label.text = "결제 등 중요 정보 알림, 로그인, 비밀번호 찾기에 필요해요."
-        label.textColor = .grayplus
+        label.textColor = .gray50
         label.font = UIFont(name: "Pretendard-Medium", size: 12)
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -33,7 +34,7 @@ class LoginViewController: UIViewController {
     private let textlabel2: UILabel = {
         let label = UILabel()
         label.text = "사용 중인 이메일을 입력해주세요"
-        label.textColor = .grayplus
+        label.textColor = .gray50
         label.font = UIFont(name: "Pretendard-Medium", size: 12)
         label.numberOfLines = 1
         label.textAlignment = .left
@@ -82,31 +83,31 @@ class LoginViewController: UIViewController {
     
     private func setLayout() {
         titlelabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(152)
-            $0.leading.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().inset(152)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         textlabel1.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(219)
-            $0.leading.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().inset(219)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         textlabel2.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(238)
-            $0.leading.equalToSuperview().offset(30)
+            $0.top.equalToSuperview().inset(238)
+            $0.leading.equalToSuperview().inset(30)
         }
         
         emailTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(279)
-            $0.leading.equalToSuperview().offset(31)
+            $0.top.equalToSuperview().inset(279)
+            $0.leading.equalToSuperview().inset(31)
             $0.height.equalTo(47)
         }
         
         loginButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(709)
-            $0.leading.equalToSuperview().offset(22)
+            $0.top.equalToSuperview().inset(709)
+            $0.leading.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
     }
@@ -128,8 +129,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func didTapLoginButton() {
-        let passwordVC = PasswordViewController()
-        passwordVC.email = emailTextField.text
-        navigationController?.pushViewController(passwordVC, animated: true)
+        let passwordViewController = PasswordViewController()
+        passwordViewController.email = emailTextField.text
+        navigationController?.pushViewController(passwordViewController, animated: true)
     }
 }
