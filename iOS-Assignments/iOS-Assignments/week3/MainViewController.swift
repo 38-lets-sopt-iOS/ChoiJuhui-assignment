@@ -22,10 +22,15 @@ class MainViewController: UIViewController {
     private let upcomingSection = HorizontalSectionView()
     private let watchaPartySection = HorizontalSectionView()
     
+    private var headerHeightConstraint: Constraint?
+    private let maxHeaderHeight: CGFloat = 100
+    private let minHeaderHeight: CGFloat = 50
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.delegate = self
         setUI()
         setLayout()
         configureSections()
@@ -44,7 +49,7 @@ class MainViewController: UIViewController {
         customNavigationBar.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(100)
+            self.headerHeightConstraint = $0.height.equalTo(maxHeaderHeight).constraint
         }
         
         scrollView.snp.makeConstraints {
@@ -105,5 +110,18 @@ class MainViewController: UIViewController {
         watgorithmSection.configure(titleImage: UIImage(named: "watgorithm"), subtitle: "예능부터 드라마까지!", images: mainPosters)
         upcomingSection.configure(title: "공개 예정 콘텐츠", images: mainPosters)
         watchaPartySection.configure(title: "왓챠 파티", images: mainPosters)
+    }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let threshold: CGFloat = maxHeaderHeight - minHeaderHeight
+        let progress = max(0, min(offsetY / threshold, 1))
+        
+        let newHeight = maxHeaderHeight - (maxHeaderHeight - minHeaderHeight) * progress
+        headerHeightConstraint?.update(offset: newHeight)
+        
+        customNavigationBar.updateForScroll(progress: progress)
     }
 }

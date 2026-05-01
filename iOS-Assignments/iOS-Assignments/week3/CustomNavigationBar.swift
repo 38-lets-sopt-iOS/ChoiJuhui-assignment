@@ -67,4 +67,22 @@ class CustomNavigationBar: UIView {
                 }
     }
     
+    func updateForScroll(progress: CGFloat) {
+        let clampedProgress = max(0, min(progress, 1))
+        
+        let maxFontSize: CGFloat = 30
+        let minFontSize: CGFloat = 18
+        let currentFontSize = maxFontSize - (maxFontSize - minFontSize) * clampedProgress
+        titleLabel.font = .systemFont(ofSize: currentFontSize, weight: .bold)
+        
+        titleLabel.snp.remakeConstraints {
+            if clampedProgress < 1 {
+                $0.top.equalTo(buttonStackView.snp.bottom).offset(8 - (8 * clampedProgress))
+                $0.leading.equalToSuperview().inset(20)
+            } else {
+                $0.centerY.equalTo(buttonStackView)
+                $0.leading.equalToSuperview().inset(20)
+            }
+        }
+    }
 }

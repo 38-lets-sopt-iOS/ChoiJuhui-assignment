@@ -44,14 +44,14 @@ class TabBarController: UITabBarController {
         appearance.backgroundColor = .black
         appearance.shadowColor = .clear
         
-        appearance.stackedLayoutAppearance.normal.iconColor = .gray
+        appearance.stackedLayoutAppearance.normal.iconColor = .gray500
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
-            .foregroundColor: UIColor.gray
+            .foregroundColor: UIColor.gray500
         ]
         
         appearance.stackedLayoutAppearance.selected.iconColor = .white
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
-            .foregroundColor: UIColor.white
+            .foregroundColor:UIColor.white
         ]
         
         tabBar.standardAppearance = appearance
