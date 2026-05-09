@@ -84,6 +84,17 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc private func didTapMainButton() {
-        navigationController?.popToRootViewController(animated: true)
-    }
-}
+        let tabBarController = TabBarController()
+        
+        guard let windowScene = view.window?.windowScene,
+              let window = windowScene.windows.first else { return }
+        
+        window.rootViewController = tabBarController
+        
+        UIView.transition(
+            with: window,
+            duration: 0.3,
+            options: .transitionCrossDissolve,
+            animations: nil
+        )
+    }}

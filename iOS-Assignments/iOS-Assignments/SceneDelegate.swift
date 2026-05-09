@@ -15,16 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let loginViewController = LoginViewController()
-        let navigationController = UINavigationController(rootViewController:loginViewController)
-            
+        let loginViewController = LoginViewController()  
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+        
         let window = UIWindow(windowScene: windowScene)
-        navigationController.isNavigationBarHidden = true
-            
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
     }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

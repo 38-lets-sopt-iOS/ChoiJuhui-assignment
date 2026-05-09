@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
         button.setTitle("다음", for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-Medium", size: 18)
         button.setTitleColor(.gray200, for: .normal)
-        button.layer.cornerRadius = 16
+        button.layer.cornerRadius = 10
         button.isEnabled = false
         return button
     }()
